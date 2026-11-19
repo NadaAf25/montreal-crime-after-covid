@@ -1,0 +1,6 @@
+pandas>=2.0
+numpy>=1.24
+plotly>=5.24
+nbformat>=5.0
+folium>=0.15
+notebook>=7.0
