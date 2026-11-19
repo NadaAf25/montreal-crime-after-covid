@@ -34,7 +34,7 @@ Requires Python 3.9 or newer.
 | `Montreal-Crime-After-COVID.ipynb` | Analysis and charts |
 | `crime_utils.py` | Loading, cleaning and calculation helpers |
 | `requirements.txt` | Python dependencies |
-| `map_hotspots.html` | Standalone interactive map of the vehicle theft hotspots (open it in a browser) |
+| `map_hotspots.html` | Standalone interactive map of the vehicle theft hotspots (([open the map](https://nadaaf25.github.io/montreal-crime-after-covid/map_hotspots.html))) |
 
 ## Key findings
 
