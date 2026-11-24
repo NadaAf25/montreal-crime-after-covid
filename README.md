@@ -1,6 +1,6 @@
 # Montreal Crime After COVID
 
-Did crime in Montreal go back to its pre-pandemic level, and where did it change? An analysis of the open data of the Service de police de la Ville de Montréal (SPVM), 2015 to 2026, with exact confidence intervals, rates per resident, an interrupted time series and a spatial hotspot analysis.
+Did crime in Montreal go back to its pre-pandemic level, and where did it change? An analysis of the open data of the Service de police de la Ville de Montréal (SPVM), 2015 to 2025, with a 2026 update, with exact confidence intervals, rates per resident, an interrupted time series and a spatial hotspot analysis.
 
 ![Incidents by crime type, 2019 = 100](images/index_2019.png)
 
@@ -47,11 +47,14 @@ SPVM, *Actes criminels*, Ville de Montréal open data portal (CC-BY 4.0): 366,06
 
 - The data counts incidents **reported** to the police; date and time are those of the report, not of the offence.
 - About 17% of incidents have no usable position, unevenly by crime type and police station (7% for burglary to 22% for vehicle contents theft in 2025; over 29% in PDQ 20 and 21). Maps understate the real counts, especially in those areas.
+- This is the open-data file published by the SPVM, which the portal states is not the official SPVM statistics. Figures can differ from the SPVM's official monthly crime reports.
+- The share of vehicle thefts without a position fell much more between 2019 and 2023 in several police stations around the top cells (for example PDQ 20: 48% to 25%) than on the whole island (18% to 16%). In the hotspot analysis the absolute increases are therefore underestimated and the percentage increases overstated. The ranking of the largest cells does not change when the counts are reweighted by the share of located incidents in each police station.
 - A single break in March 2020 is a crude description of some series. Residuals are strongly autocorrelated (Durbin-Watson 0.47 for total incidents, 0.26 for vehicle theft), and the fitted line overshoots the observed counts in 2024-2025 because a straight trend cannot follow a rise and a fall; read the time series estimates as indicative.
 - The results show temporal associations, not proof that the pandemic caused them.
 - Five categories are compared at once: an interval bound close to 0 (mischief) should be read as borderline.
 - Poisson intervals assume independent incidents and treat the population as known, so they understate the real uncertainty.
-- The population series drops by 2.2% in 2021, likely a methodological break after the 2021 census. If so, rates before 2021 are slightly underestimated and the per-resident increase since 2019 slightly overstated.
+- The population series drops by 2.2% in 2021 because the ISQ estimates from 2021 onward start from the adjusted 2021 Census counts, and in 2025 Statistics Canada changed how it estimates non-permanent residents, which lowered 2021 to 2024. The years before 2021 are therefore not on the same basis: rates before 2021 are slightly underestimated and the per-resident increase since 2019 slightly overstated. The ISQ plans to update the regional series in January 2027.
+- The open-data file stops being updated a few months after the end of each year, but 2026 is still being updated, so the most recent weeks may be missing late records that earlier years already include. The 2026 comparisons are indicative, and the comparison with 2019 depends on the months included.
 - "Offenses causing death" includes manslaughter and criminal negligence, not only murder, and is too rare (23 to 39 per year) for percentage trends.
 
 ## Population
@@ -93,5 +96,5 @@ Python, pandas, numpy, scipy, statsmodels, pyproj, shapely, plotly, folium, kale
 ## Sources
 
 - SPVM, *Actes criminels*, Ville de Montréal open data portal (CC-BY 4.0): https://donnees.montreal.ca/dataset/actes-criminels
-- Ville de Montréal, *Limites administratives de l'agglomération*.
+- Ville de Montréal, *Limites administratives de l'agglomération* (CC-BY 4.0): https://donnees.montreal.ca/dataset/limites-administratives-agglomeration
 - Institut de la statistique du Québec, *Population et structure par âge et genre – Municipalités*: https://statistique.quebec.ca/fr/document/population-et-structure-par-age-et-sexe-municipalites
