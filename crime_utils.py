@@ -17,7 +17,7 @@ import pandas as pd
 ALL_CATEGORIES = [
     "Vehicle contents or parts theft",
     "Burglary",
-    "Misdemeanor",
+    "Mischief",
     "Vehicle theft",
     "Robbery",
     "Offenses causing death",
@@ -32,15 +32,16 @@ TIMES_OF_DAY = ["day", "evening", "night"]
 _LAT_RANGE = (45.3, 45.8)
 _LON_RANGE = (-74.1, -73.3)
 
-# (text found in the French label, English name); order matters
-_CATEGORY_RULES = [
-    ("introduction", "Burglary"),
-    ("vol dans", "Vehicle contents or parts theft"),
-    ("vol de vehicule", "Vehicle theft"),
-    ("mefait", "Misdemeanor"),
-    ("qualifi", "Robbery"),
-    ("mort", "Offenses causing death"),
-]
+# SPVM label (lower case, accents removed) -> English name.
+# Source: column CATEGORIE of the "Actes criminels" dataset (6 distinct values).
+CATEGORY_MAP = {
+    "vol de vehicule a moteur": "Vehicle theft",
+    "vol dans / sur vehicule a moteur": "Vehicle contents or parts theft",
+    "introduction": "Burglary",
+    "mefait": "Mischief",
+    "vols qualifies": "Robbery",
+    "infractions entrainant la mort": "Offenses causing death",
+}
 _TIME_RULES = {"jour": "day", "soir": "evening", "nuit": "night"}
 
 
@@ -54,11 +55,8 @@ def _plain(text):
 
 
 def _english_category(label):
-    plain = _plain(label)
-    for fragment, english in _CATEGORY_RULES:
-        if fragment in plain:
-            return english
-    return np.nan
+    """English name of an SPVM category; NaN if the label is not in CATEGORY_MAP."""
+    return CATEGORY_MAP.get(_plain(label), np.nan)
 
 
 def load_crimes(path, cell_size=0.01):

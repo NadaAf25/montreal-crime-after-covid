@@ -18,6 +18,21 @@ What happened to crime in Montreal after the COVID-19 shock, and has it returned
 [Montreal Open Data Portal - Actes criminels](https://donnees.montreal.ca/dataset/actes-criminels) (SPVM).
 Save the csv as `data/actes-criminels.csv` (the `data/` folder is git-ignored). The file used here covers 2015-01-01 to mid-November 2026; 2015 - 2025 are the complete years analysed.
 
+## Crime categories
+
+The SPVM file has six categories. The English names used in the analysis map to the original French labels as follows:
+
+| SPVM label (`CATEGORIE`) | English name used here |
+| --- | --- |
+| Vol de véhicule à moteur | Vehicle theft |
+| Vol dans / sur véhicule à moteur | Vehicle contents or parts theft |
+| Introduction | Burglary (break and enter) |
+| Méfait | Mischief |
+| Vols qualifiés | Robbery |
+| Infractions entrainant la mort | Offenses causing death |
+
+The mapping is defined in `CATEGORY_MAP` in `crime_utils.py`; a label that is not in the mapping is dropped.
+
 ## Run
 
 ```bash
@@ -31,16 +46,16 @@ Requires Python 3.9 or newer.
 
 | File | Content |
 | --- | --- |
-| `Montreal-Crime-After-COVID.ipynb` | Analysis and charts ([view the full report with interactive charts](https://nadaaf25.github.io/montreal-crime-after-covid/MontrealCrimeAfterCOVID.html)) |
+| `Montreal-Crime-After-COVID.ipynb` | Analysis and charts |
 | `crime_utils.py` | Loading, cleaning and calculation helpers |
 | `requirements.txt` | Python dependencies |
-| `map_hotspots.html` | Standalone interactive map of the vehicle theft hotspots ([open the map](https://nadaaf25.github.io/montreal-crime-after-covid/map_hotspots.html)) |
+| `map_hotspots.html` | Standalone interactive map of the vehicle theft hotspots (open it in a browser) |
 
 ## Key findings
 
 * 2025 has 29,832 reported incidents, **9.9% more than 2019** (27,155). The lowest year is 2020 (25,460) and the highest is 2015 (35,609).
 * **Vehicle theft** is the category furthest above its 2019 level in 2025 (**+57.8%**). It peaked in 2023 (11,528 incidents, +176% vs 2019) and has fallen since (8,661 in 2024, 6,579 in 2025).
-* Robbery is +15.7% vs 2019; burglary is −4.7%; misdemeanor +4.0%; vehicle contents or parts theft +0.7%.
+* Robbery is +15.7% vs 2019; burglary is −4.7%; mischief +4.0%; vehicle contents or parts theft +0.7%.
 * The largest vehicle theft increases are in a few grid cells in the east-centre of the island and in the west (near Pointe-Claire).
 * The busiest 1% of locations account for 9.8% of incidents in 2025, against 7.8% in 2019 and 11.1% in 2023.
 * January to October 2026: **−3.0% vs 2025, +8.4% vs 2019** (vehicle theft −7.1% vs 2025, +50.7% vs 2019).
