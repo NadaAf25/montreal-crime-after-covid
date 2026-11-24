@@ -1,12 +1,12 @@
 year,population,status,source
-2015,,to fill,Institut de la statistique du Quebec (ISQ)
-2016,,to fill,Institut de la statistique du Quebec (ISQ)
-2017,,to fill,Institut de la statistique du Quebec (ISQ)
-2018,,to fill,Institut de la statistique du Quebec (ISQ)
-2019,,to fill,Institut de la statistique du Quebec (ISQ)
-2020,,to fill,Institut de la statistique du Quebec (ISQ)
-2021,2015879,final,ISQ - Montreal administrative region (06); table 1.1 of the Panorama des regions du Quebec 2026
-2022,2034638,revised,ISQ - Montreal administrative region (06); table 1.1 of the Panorama des regions du Quebec 2026
-2023,2094820,revised,ISQ - Montreal administrative region (06); table 1.1 of the Panorama des regions du Quebec 2026
-2024,2166724,revised,ISQ - Montreal administrative region (06); table 1.1 of the Panorama des regions du Quebec 2026
-2025,2172259,provisional,ISQ - Montreal administrative region (06); table 1.1 of the Panorama des regions du Quebec 2026
+2015,1951052,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2016,1960740,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2017,1983795,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2018,2023837,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2019,2059126,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2020,2061967,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2021,2015879,final,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2022,2034638,revised,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2023,2094820,revised,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2024,2166724,revised,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
+2025,2172259,provisional,ISQ - Estimations de la population des municipalites - 1er juillet 2001 a 2025 (14 janvier 2026); sum of the 16 municipalities of Montreal administrative region (06)
