@@ -1,5 +1,7 @@
-# Data (download it from the Montreal Open Data Portal, see README)
-data/
+# Data (download it with `python download_data.py`, see README).
+# Only the description of the expected files is tracked.
+data/*
+!data/README.md
 
 # Python
 __pycache__/
@@ -7,6 +9,7 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+.pytest_cache/
 
 # Environments
 .env
