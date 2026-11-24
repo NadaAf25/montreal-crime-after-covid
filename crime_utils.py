@@ -59,13 +59,8 @@ def _english_category(label):
     return CATEGORY_MAP.get(_plain(label), np.nan)
 
 
-def load_crimes(path, cell_size=0.01):
-    """Read the SPVM csv and return a clean, analysis-ready DataFrame.
-
-    Added columns: YEAR, MONTH, WEEKDAY, HAS_LOCATION and the grid cell
-    (CELL_LAT, CELL_LON) of each incident. `cell_size` is in degrees
-    (0.01 is roughly 1.1 km north-south and 0.8 km east-west in Montreal).
-    """
+def _read_raw(path):
+    """Read the SPVM csv as is, with upper-case column names."""
     raw = None
     for encoding in ("utf-8-sig", "latin1"):
         try:
@@ -74,7 +69,17 @@ def load_crimes(path, cell_size=0.01):
         except UnicodeDecodeError:
             continue
     raw.columns = [c.strip().upper() for c in raw.columns]
-    raw = raw.rename(columns={"LATITUDE": "LAT", "LONGITUDE": "LON", "LONG": "LON"})
+    return raw.rename(columns={"LATITUDE": "LAT", "LONGITUDE": "LON", "LONG": "LON"})
+
+
+def load_crimes(path, cell_size=0.01):
+    """Read the SPVM csv and return a clean, analysis-ready DataFrame.
+
+    Added columns: YEAR, MONTH, WEEKDAY, HAS_LOCATION and the grid cell
+    (CELL_LAT, CELL_LON) of each incident. `cell_size` is in degrees
+    (0.01 is roughly 1.1 km north-south and 0.8 km east-west in Montreal).
+    """
+    raw = _read_raw(path)
 
     pdq = pd.to_numeric(raw["PDQ"], errors="coerce").astype("Int64")
     df = pd.DataFrame({
@@ -98,6 +103,43 @@ def load_crimes(path, cell_size=0.01):
     df["CELL_LAT"] = (np.floor(df["LAT"] / cell_size) * cell_size).round(3)
     df["CELL_LON"] = (np.floor(df["LON"] / cell_size) * cell_size).round(3)
     return df.reset_index(drop=True)
+
+
+def quality_report(path):
+    """Check the raw file and report what the cleaning keeps, drops or flags.
+
+    Returns a DataFrame with the number of rows and the share of the raw file
+    for each check. Nothing is removed here: exact duplicates are only counted,
+    because the file has no incident identifier and two different incidents can
+    share a date, a category and an intersection.
+    """
+    raw = _read_raw(path)
+    total = len(raw)
+
+    bad_date = pd.to_datetime(raw["DATE"], errors="coerce").isna()
+    bad_category = raw["CATEGORIE"].map(_english_category).isna()
+    bad_time = raw["QUART"].map(lambda v: _TIME_RULES.get(_plain(v), np.nan)).isna()
+    no_pdq = pd.to_numeric(raw["PDQ"], errors="coerce").isna()
+
+    lat = pd.to_numeric(raw["LAT"], errors="coerce")
+    lon = pd.to_numeric(raw["LON"], errors="coerce")
+    no_coords = lat.isna() | lon.isna()
+    outside = ~no_coords & ~(lat.between(*_LAT_RANGE) & lon.between(*_LON_RANGE))
+
+    rows = [
+        ("Raw rows", total),
+        ("Invalid dates (dropped)", int(bad_date.sum())),
+        ("Unrecognised categories (dropped)", int(bad_category.sum())),
+        ("Rows kept after cleaning", int((~bad_date & ~bad_category).sum())),
+        ("Exact duplicate rows (kept, counted only)", int(raw.duplicated().sum())),
+        ("Missing coordinates (kept, no map position)", int(no_coords.sum())),
+        ("Coordinates outside the Montreal box (kept, no map position)", int(outside.sum())),
+        ("Missing PDQ (kept)", int(no_pdq.sum())),
+        ("Unrecognised time of day (kept)", int(bad_time.sum())),
+    ]
+    out = pd.DataFrame(rows, columns=["Check", "Rows"]).set_index("Check")
+    out["% of raw rows"] = (out["Rows"] / total * 100).round(2)
+    return out
 
 
 def data_quality(df):
