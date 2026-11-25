@@ -59,7 +59,7 @@ SPVM, *Actes criminels*, Ville de Montréal open data portal (CC-BY 4.0): 366,06
 
 ## Population
 
-Rates per 100,000 residents use the population of the Montréal administrative region (06, the island) on 1 July. It is the sum of the 16 municipalities of the region in the Institut de la statistique du Québec file *Estimations de la population des municipalités, 1er juillet 2001 à 2025* (14 January 2026, based on Statistics Canada estimates), stored in `reference/population_montreal.csv` for 2015 to 2025. The 2022 to 2024 values are revised and the 2025 value is provisional, so the 2025 rate may change slightly.
+Rates per 100,000 residents use the population of the Montréal administrative region (06, the island) on 1 July. It is the sum of the 16 municipalities of the region in the Institut de la statistique du Québec file [*Estimations de la population des municipalités, Québec, 1er juillet 2001 à 2025*](https://statistique.quebec.ca/fr/fichier/estimations-population-municipalites-quebec.xlsx) (XLSX, 14 January 2026, based on Statistics Canada estimates), stored in `reference/population_montreal.csv` for 2015 to 2025. The 2022 to 2024 values are revised and the 2025 value is provisional, so the 2025 rate may change slightly.
 
 ## Project structure
 
