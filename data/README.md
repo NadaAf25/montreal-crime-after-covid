@@ -26,6 +26,21 @@ python download_data.py
 `DATE` and `QUART` describe the report, not necessarily the event, so weekday and time-of-day
 results are reporting patterns. Wording quoted from the official data dictionary.
 
+## Crime categories (column `CATEGORIE`)
+
+The file has 6 categories. They are translated in `crime_utils.CATEGORY_MAP`:
+
+| SPVM label | English name used here |
+| --- | --- |
+| Vol de véhicule à moteur | Vehicle theft |
+| Vol dans / sur véhicule à moteur | Vehicle contents or parts theft |
+| Introduction | Burglary |
+| Méfait | Mischief |
+| Vols qualifiés | Robbery |
+| Infractions entraînant la mort | Offenses causing death |
+
+"Offenses causing death" includes manslaughter and criminal negligence, not only murder.
+
 ## Expected size
 
 About 365,000 rows (≈ 33 MB) for January 2015 to mid-November 2026. The portal updates the file daily.
