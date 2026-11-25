@@ -4,8 +4,7 @@ Did crime in Montreal go back to its pre-pandemic level, and where did it change
 
 ![Incidents by crime type, 2019 = 100](images/index_2019.png)
 
-**Interactive results:** [HTML report](docs/report.html) · [hotspot map](docs/map_hotspots.html)
-(open the files from a clone of the repository, or enable GitHub Pages on the `docs/` folder)
+**Interactive results:** [HTML report](https://nadaaf25.github.io/montreal-crime-after-covid/report.html) · [hotspot map](https://nadaaf25.github.io/montreal-crime-after-covid/map_hotspots.html)
 
 ## Key findings
 
